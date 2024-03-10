@@ -26,9 +26,9 @@ function generateFlashCards() {
 				const restOfInfo = row.slice(1); // Rest of the information
 				let backContent = '';
 				for (let i = 0; i < headings.length - 1; i++) {
-					backContent += `<h2 class="info-heading">${
+					backContent += `<div class="info-box"><h2 class="info-heading">${
 						headings[i + 1]
-					}</h2><p class="card-info">${restOfInfo[i]}</p>`;
+					}</h2><p class="info-content">${restOfInfo[i]}</p></div>`;
 				}
 				return `
                     <div class="flashcard">
