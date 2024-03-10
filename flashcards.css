@@ -1,0 +1,112 @@
+/* CSS for Flash Cards */
+body,
+html {
+	height: 100%;
+	margin: 0;
+	background-color: transparent; /* Set background color to transparent */
+	overflow: hidden;
+}
+
+.flashcards-carousel {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap; /* Allow cards to wrap onto multiple lines */
+	width: 100%;
+	height: 100%;
+	overflow: auto; /* Enable scrolling/swiping through cards */
+	scroll-snap-type: x mandatory; /* Enable snap-scrolling horizontally */
+}
+
+.flashcard {
+	width: 30vw; /* Adjust width to take up 30% of the viewport width */
+	height: 80vh; /* Adjust height to take up 80% of the viewport height */
+	background-color: randomColor();
+	margin: 10px; /* Add margin to create gap between different flashcards */
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	perspective: 1000px;
+	scroll-snap-align: start; /* Align cards to start of scroll area */
+	cursor: pointer; /* Add cursor pointer for hover effect */
+}
+
+@media only screen and (max-width: 1200px) {
+	.flashcard {
+		width: 45vw; /* Adjust width to take up 45% of the viewport width */
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.flashcard {
+		width: 90vw; /* Adjust width to take up 90% of the viewport width */
+	}
+}
+
+.flashcard .front,
+.flashcard .back {
+	width: 100%; /* Use entire width of the parent */
+	height: 100%; /* Use entire height of the parent */
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: transform 0.6s ease; /* Add transition for smooth rotation with ease */
+}
+
+.front {
+	z-index: 2;
+	transform: rotateY(0deg); /* Initially show front side */
+}
+
+.back {
+	transform: rotateY(180deg); /* Initially hide back side */
+	display: flex;
+	flex-direction: column; /* Arrange child elements in columns */
+	justify-content: space-evenly; /* Evenly distribute child elements */
+	align-items: center;
+	gap: 10px; /* Add gap between child elements */
+	background-color: #ffffff; /* Set background color for back side */
+	color: #000000; /* Set text color for back side */
+}
+
+/* Style for <h2> element */
+.back h2 {
+	background-color: #dddddd; /* Set darker background color */
+	padding: 5px; /* Add padding */
+	width: 90%; /* Use entire width of the parent */
+}
+
+/* Style for <p> element */
+.back p {
+	background-color: #eeeeee; /* Set lighter background color */
+	padding: 5px; /* Add padding */
+	width: 90%; /* Use entire width of the parent */
+}
+
+.flashcard:hover .front {
+	transform: rotateY(-180deg); /* Flip to show back side on hover */
+}
+
+.flashcard:hover .back {
+	transform: rotateY(
+		0deg
+	); /* Flip back to show front side when hover is removed */
+}
+
+.home-button {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: #3498db;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
